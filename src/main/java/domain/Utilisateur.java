@@ -1,26 +1,42 @@
 package domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "utilisateur")  // Ajout du nom explicite de la table
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Utilisateur {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Spécification de la stratégie
     private Long id;
+
+    @Column(nullable = false)  // Nom obligatoire
     private String nom;
+
+    @Column(nullable = false)  // Prénom obligatoire
     private String prenom;
+
+    @Column(nullable = false)  // Mot de passe obligatoire
     private String motdepasse;
+
+    @Column(nullable = false, unique = true)  // Email obligatoire et unique
     private String email;
 
-    public Utilisateur(){
+    @OneToMany(mappedBy = "acheteur", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 
+    public Utilisateur() {}
+
+    public Utilisateur(String nom, String email, String prenom, String motdepasse) {
+        this.nom = nom;
+        this.email = email;
+        this.prenom = prenom;
+        this.motdepasse = motdepasse;
     }
 
-    @Id
-    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -61,7 +77,11 @@ public class Utilisateur {
         this.email = email;
     }
 
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
 
-
-
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 }
