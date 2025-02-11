@@ -21,6 +21,10 @@ public class Ticket {
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
 
+    @ManyToOne
+    @JoinColumn(name = "acheteur_id")
+    private Utilisateur acheteur;
+
     // Getters et Setters
     public Long getId() {
         return id;
@@ -69,5 +73,23 @@ public class Ticket {
     public void setEvenement(Evenement evenement) {
         this.evenement = evenement;
     }
+
+    public Utilisateur getAcheteur() {
+        return acheteur;
+    }
+    public void setAcheteur(Utilisateur acheteur) {
+        this.acheteur = acheteur;
+    }
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", prix=" + prix +
+                '}';
+    }
+
 }
+
+
+
 

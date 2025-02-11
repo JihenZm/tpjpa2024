@@ -12,14 +12,18 @@ public class Evenement {
 
     @Temporal(TemporalType.DATE)
     private Date date;
-
+    private String titre;
     private String lieu;
     private String description;
     private double prix;
     private int popularite;
-
+    private int capacite;
     @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
+
+    @ManyToOne
+    @JoinColumn(name = "organisateur_id")
+    private Organisateur organisateur;
 
     // Getters et Setters
     public Long getId() {
@@ -38,6 +42,8 @@ public class Evenement {
         this.date = date;
     }
 
+    public String getTitre(){return titre;}
+    public void setTitre(String titre){this.titre = titre;}
     public String getLieu() {
         return lieu;
     }
@@ -76,6 +82,19 @@ public class Evenement {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public Organisateur getOrganisateur() {
+        return organisateur;
+    }
+    public void setOrganisateur(Organisateur organisateur) {
+        this.organisateur = organisateur;
+    }
+    public int getCapacite() {
+        return capacite;
+    }
+    public void setCapacite(int capacite) {
+        this.capacite = capacite;
     }
 }
 
