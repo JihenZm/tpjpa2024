@@ -6,8 +6,13 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("event_pu");
         EntityManager em = emf.createEntityManager();
 
+
         EvenementDAO evenementDAO = new EvenementDAO(em);
         TicketDAO ticketDAO = new TicketDAO(em);
+
+        // Ajouter un utilisateur
+
+
 
         // Search for events
         List<Evenement> events = evenementDAO.searchByKeyword("concert");
@@ -23,4 +28,4 @@ public class Main {
         em.close();
         emf.close();
     }
-}
+
