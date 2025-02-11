@@ -30,7 +30,7 @@ public class Utilisateur {
 
     public Utilisateur() {}
 
-    public Utilisateur(String nom, String email, String prenom, String motdepasse) {
+    public Utilisateur(String nom, String prenom ,String email, String motdepasse) {
         this.nom = nom;
         this.email = email;
         this.prenom = prenom;
