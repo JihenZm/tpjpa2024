@@ -1,2 +1,4 @@
 data/
 .idea/
+src/main/resources/META-INF/persistence.xml
+pom.xml
