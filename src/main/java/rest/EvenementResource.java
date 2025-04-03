@@ -1,29 +1,33 @@
 package rest;
 
 import dao.EvenementDAO;
+import jpa.EntityManagerHelper;
 import domain.Evenement;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 @Path("evenement")
+@RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class EvenementResource {
-    private EntityManager entityManager;
+
+    private EntityManager entityManager = EntityManagerHelper.getEntityManager();
+
     private EvenementDAO evenementDAO;
 
-    public EvenementResource(EntityManager entityManager) {
-        this.entityManager = entityManager;
-        this.evenementDAO = new EvenementDAO(entityManager);
-    }
+    public EvenementResource() {} // Required for CDI
 
     @GET
     @Path("/{id}")
     public Evenement getEvenementById(@PathParam("id") Long id) {
-        return entityManager.find(Evenement.class, id);
+        return entityManager.find(Evenement.class, id); // Fix: entityManager should be injected now
     }
 
     @GET
@@ -38,21 +42,4 @@ public class EvenementResource {
         entityManager.getTransaction().commit();
         return Response.ok().entity("Evenement added successfully").build();
     }
-
-    @GET
-    @Path("search")
-    public List<Evenement> searchEvenements(@QueryParam("keyword") String keyword,
-                                            @QueryParam("minPrice") Double minPrice,
-                                            @QueryParam("maxPrice") Double maxPrice,
-                                            @QueryParam("minPopularity") Integer minPopularity) {
-        if (keyword != null && !keyword.isEmpty()) {
-            return evenementDAO.searchByKeyword(keyword);
-        } else if (minPrice != null && maxPrice != null) {
-            return evenementDAO.searchByPriceRange(minPrice, maxPrice);
-        } else if (minPopularity != null) {
-            return evenementDAO.searchByPopularity(minPopularity);
-        }
-        return getAllEvenements();
-    }
 }
-
