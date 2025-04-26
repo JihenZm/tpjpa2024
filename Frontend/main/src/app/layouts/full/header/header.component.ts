@@ -24,8 +24,10 @@ import { MatBadgeModule } from '@angular/material/badge';
   ],
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None,
+  standalone: true
 })
 export class HeaderComponent {
+
   @Input() showToggle = true;
   @Input() toggleChecked = false;
   @Output() toggleMobileNav = new EventEmitter<void>();

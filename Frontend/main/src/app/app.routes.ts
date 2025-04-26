@@ -5,21 +5,19 @@ import {ListEventComponent} from "./components/Events/list-event/list-event.comp
 import {ListParticipantComponent} from "./components/Participants/list-participant/list-participant.component";
 import {AppSideLoginComponent} from "./pages/authentication/side-login/side-login.component";
 import {AppSideRegisterComponent} from "./pages/authentication/side-register/side-register.component";
+import {AddEventComponent} from "./components/Events/add-event/add-event.component";
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/accueil', // Redirige vers la page d'accueil par défaut
+    redirectTo: '/login', // Redirige vers la page d'accueil par défaut
     pathMatch: 'full',
   },
-  //{
-   // path: 'accueil', // Route vers la page d'accueil
-  //  component: PageaccueilComponent,
-  //},
   {
-    path: 'login',
-    component: AppSideLoginComponent, // Liste des participants
+   path: 'login', // Route vers la page d'accueil
+    component: AppSideLoginComponent,
   },
+
 
   {
     path: 'inscription', // Route vers la page d'inscription
@@ -44,6 +42,10 @@ export const routes: Routes = [
       {
         path: 'event/listEvent',
         component: ListEventComponent, // Liste des participants
+      },
+      {
+        path: 'event/addEvent',
+        component: AddEventComponent, // Liste des participants
       },
       {
         path: 'participant/listParticipant',

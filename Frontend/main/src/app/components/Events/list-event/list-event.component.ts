@@ -7,16 +7,14 @@ import {RouterLink} from "@angular/router";
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 
-
 interface cardimgs {
   id: number;
-  time: string;
+  gender: string;
   imgSrc: string;
   user: string;
   title: string;
-  views: string;
-  category: string;
-  comments: number;
+  location: string;
+  price: string;
   date: string;
 }
 @Component({
@@ -33,36 +31,33 @@ export class ListEventComponent {
   cardimgs: cardimgs[] = [
     {
       id: 1,
-      time: '2 mins Read',
+      gender: 'JAZZ',
       imgSrc: '/assets/images/blog/blog-img1.jpg',
       user: '/assets/images/profile/user-1.jpg',
       title: 'As yen tumbles, gadget-loving Japan goes for iPhones',
-      views: '9,125',
-      category: 'Social',
-      comments: 3,
+      location: 'Paté Rennes ',
+      price: '30',
       date: 'Mon, Dec 2025',
     },
     {
       id: 2,
-      time: '2 mins Read',
+      gender: 'POP',
       imgSrc: '/assets/images/blog/blog-img2.jpg',
       user: '/assets/images/profile/user-2.jpg',
       title:
         'Intel loses bid to revive antitrust case against patent foe Fortress',
-      views: '9,125',
-      category: 'Gadget',
-      comments: 3,
+      location: 'Rennes',
+      price: '30',
       date: 'Sun, Dec 2025',
     },
     {
       id: 3,
-      time: '2 mins Read',
+      gender: 'HIP HOP',
       imgSrc: '/assets/images/blog/blog-img3.jpg',
       user: '/assets/images/profile/user-3.jpg',
       title: 'COVID outbreak deepens as more lockdowns loom in China',
-      views: '9,125',
-      category: 'Health',
-      comments: 12,
+      location: 'Paris',
+      price: '30',
       date: 'Sat, Dec 2025',
     },
   ];
