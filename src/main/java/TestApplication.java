@@ -2,13 +2,10 @@
 import java.util.HashSet;
 import java.util.Set;
 
-import rest.EvenementResource;
+import rest.*;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
-import rest.OrganisateurResource;
-import rest.TicketResource;
-import rest.UtilisateurResource;
 
 @ApplicationPath("/")
 public class TestApplication extends Application {
@@ -24,6 +21,8 @@ public class TestApplication extends Application {
         clazzes.add(OrganisateurResource.class);
         clazzes.add(TicketResource.class);
         clazzes.add(UtilisateurResource.class);
+        clazzes.add(AuthenticationResource.class);
+
 //        clazzes.add(AcceptHeaderOpenApiResource.class);
 
 
