@@ -5,6 +5,7 @@ public class RegisterRequest {
     private String prenom;
     private String email;
     private String motdepasse;
+    private String role;
 
     public String getNom() {
         return nom;
@@ -37,4 +38,8 @@ public class RegisterRequest {
     public void setMotdepasse(String motdepasse) {
         this.motdepasse = motdepasse;
     }
+
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

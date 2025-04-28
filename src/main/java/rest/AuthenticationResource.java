@@ -2,7 +2,9 @@ package rest;
 
 import dao.AuthRequest;
 import dao.RegisterRequest;
+import dao.LoginResponse;
 import domain.Utilisateur;
+import domain.Organisateur;
 import jakarta.persistence.NoResultException;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -34,7 +36,17 @@ public class AuthenticationResource {
             }
 
             Utilisateur user = utilisateurs.get(0);
-            return Response.ok(user).build();
+
+            String role = (user instanceof Organisateur) ? "organisateur" : "user";
+
+            LoginResponse loginResponse = new LoginResponse(
+                    user.getNom(),
+                    user.getPrenom(),
+                    user.getEmail(),
+                    role
+            );
+
+            return Response.ok(loginResponse).build();
 
         } catch (NoResultException e) {
             return Response.status(Response.Status.UNAUTHORIZED)
@@ -42,29 +54,40 @@ public class AuthenticationResource {
         }
     }
 
+
     @POST
     @Path("/register")
     public Response register(RegisterRequest request) {
         EntityManager em = EntityManagerHelper.getEntityManager();
         EntityManagerHelper.beginTransaction();
         try {
-            // Check if email already exists
             List<Utilisateur> existing = em.createQuery(
                             "SELECT u FROM Utilisateur u WHERE u.email = :email", Utilisateur.class)
                     .setParameter("email", request.getEmail())
                     .getResultList();
 
             if (!existing.isEmpty()) {
+                EntityManagerHelper.rollback();
                 return Response.status(Response.Status.CONFLICT)
                         .entity("Email already used").build();
             }
 
-            Utilisateur newUser = new Utilisateur(
-                    request.getNom(),
-                    request.getPrenom(),
-                    request.getEmail(),
-                    request.getMotdepasse()
-            );
+            Utilisateur newUser;
+            if ("organisateur".equalsIgnoreCase(request.getRole())) {
+                newUser = new Organisateur(
+                        request.getNom(),
+                        request.getPrenom(),
+                        request.getEmail(),
+                        request.getMotdepasse()
+                );
+            } else {
+                newUser = new Utilisateur(
+                        request.getNom(),
+                        request.getPrenom(),
+                        request.getEmail(),
+                        request.getMotdepasse()
+                );
+            }
 
             em.persist(newUser);
             EntityManagerHelper.commit();
@@ -77,4 +100,5 @@ public class AuthenticationResource {
                     .entity("Registration failed").build();
         }
     }
+
 }
