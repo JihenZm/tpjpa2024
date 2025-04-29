@@ -1,52 +1,104 @@
-# 📌 Compte Rendu - TP JPA & Servlets
+# Ticket Manager – Backend API
 
-## 📖 Introduction
+This is the backend for the **Ticket Manager** project, built using Java with JAX-RS, JPA (Hibernate), and PostgreSQL.
 
-Ce projet consiste en la conception et l’implémentation d’une application de Vente de Tickets de Concert en Ligne en utilisant JPA, Servlets et JAX-RS. L'objectif est de comprendre et d'appliquer les concepts liés à la persistance des données, aux services web REST et à la communication entre le front-end et le back-end. Ce compte rendu détaille l'avancement des différentes tâches et les prochaines étapes du projet.
+## ✅ API Status
+
+The API is **fully implemented** and ready for testing and integration.
+
+## 🛠️ How to Run the API
+
+### Requirements
+
+- Java 17+
+- Maven
+- PostgreSQL (running locally)
+
+### 1. Clone the repository
+
+```bash
+git clone https://your-backend-repo-url.git
+cd backend
+```
+
+### 2. Configure Database Connection
+
+Make sure you have a local PostgreSQL database named `ticket_manager` running with the following credentials (or update `persistence.xml` accordingly):
+
+```xml
+<persistence-unit name="dev" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <properties>
+        <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
+        <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/ticket_manager" />
+        <property name="jakarta.persistence.jdbc.user" value="postgres" />
+        <property name="jakarta.persistence.jdbc.password" value="0000" />
+        <property name="jakarta.persistence.schema-generation.database.action" value="create" />
+        <property name="jakarta.persistence.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+        <property name="hibernate.show_sql" value="true" />
+    </properties>
+</persistence-unit>
+```
+
+> This configuration will recreate the schema each time you restart the application.
+
+### 3. Build and Run the Project
+
+Use Maven to compile the project:
+
+```bash
+mvn clean install
+```
+
+Then run the main class `RestServer` located in the `rest` package:
+
+```bash
+mvn exec:java -Dexec.mainClass="rest.RestServer"
+```
+
+## 🧪 Testing the API
+
+You can use **Postman** to test the API. All available endpoints are documented in the shared collection below:
+
+🔗 **[Postman API Documentation](https://almamma.postman.co/workspace/ticketSIR~7c18ee85-d0e7-40f4-bd09-4e55ab5dab74/collection/19138390-8d381447-c607-45e9-bf47-66d5422390d2?action=share&creator=19138390)**
 
 ---
 
-## 🚀 Avancement des tâches
+## 🌐 Frontend
 
-| Tâche | Statut | Remarques |
-|-------|--------|-----------|
-| Modélisation métier (JPA) | 🟢 Terminé | Création des entités et relations |
-| Configuration de la base de données | 🟢 Terminé | Utilisation de PostgreSQL, script d'initialisation OK |
-| Implémentation des DAO | 🟡 En cours | Quelques requêtes à optimiser |
-| Création des Servlets | 🟡 En cours | Servlets GET/POST fonctionnels, validation à améliorer |
-| Gestion des formulaires HTML | 🔴 Pas commencé | À faire après la partie Servlet |
-| Mise en place de JAX-RS avec Jersey | 🟡 En cours | Prévu après validation des DAO |
-| Création de services REST (CRUD) | 🟡 En cours | Lié à l’intégration de Jersey |
-| Tests des endpoints avec Postman | 🔴 Pas commencé | Besoin d’implémenter les services REST d’abord |
-| Documentation OpenAPI (Swagger) | 🔴 Pas commencé | À faire une fois les endpoints finalisés |
-| Utilisation de DTO | 🔴 Pas commencé | Nécessaire pour la couche service |
-| Refactoring et qualité du code | 🔴 Pas commencé | Vérification finale avant rendu |
+The frontend is built using React and can be accessed from a separate repository.
+
+### 1. Clone the Frontend Repository
+
+```bash
+git clone https://your-frontend-repo-url.git
+cd frontend
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the Frontend
+
+```bash
+npx serve
+```
+
+> The frontend expects the backend to be running on `http://localhost:8080` (or adjust the API base URL in the frontend accordingly).
 
 ---
 
-## 🛠️ Comment démarrer le projet ?
+## 📂 Structure
 
-### 1️⃣ Cloner le repository
-```sh
-git clone https://github.com/JihenZm/tpjpa2024.git
-cd tpjpa2024
-```
-> 📌 **Note** : Le code nécessaire se trouve dans la branche `dev`.  
-> Après avoir cloné le dépôt, pensez à exécuter ``` git checkout dev ``` pour y accéder.
+- `rest/`: REST API resources and `RestServer.java`
+- `domain/`: JPA entities
+- `dao/`: Request models and data access helpers
+- `jpa/EntityManagerHelper.java`: Handles persistence context
 
+---
 
-### 2️⃣ Démarrer la base de données
-- Démarrer la base de données PostgreSQL
-- Lancer pgAdmin4 et créer la base de données nécessaire
+Feel free to update credentials or endpoints based on your environment.
 
-### 3️⃣ Compiler et lancer le projet avec Maven
-```sh
-mvn compile jetty:run
-```
-
-## 📅 Prochaines étapes
-- ✅ Finaliser l’implémentation des DAO
-- ✅ Terminer la gestion des Servlets et formulaires
-- ✅ Ajouter JAX-RS et les services REST
-- ✅ Tester les endpoints avec Postman
-- ✅ Générer la documentation OpenAPI
