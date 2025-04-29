@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3744682-1fbe-45e7-b042-01d31657c094" name="Changes" comment="">
+    <list default="true" id="f3744682-1fbe-45e7-b042-01d31657c094" name="Changes" comment="Changements pour que RestServer démarre correctement">
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/rest/AdminResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/rest/OrganisateurResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/rest/TicketResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/rest/UtilisateurResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/CorsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/CorsFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/rest/EvenementResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/rest/EvenementResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,22 +36,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.RestServer.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dogukan-dev",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/dogukan/Cours/M1/SIR/Projet/tpjpa2024",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/dogukan/Cours/M1/SIR/Projet/tpjpa2024/tpjpa2024/Frontend/main/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.RestServer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dogukan-dev&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dogukan/Cours/M1/SIR/Projet/tpjpa2024&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/dogukan/Cours/M1/SIR/Projet/tpjpa2024/tpjpa2024/Frontend/main/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="RestServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RestServer" />
@@ -81,10 +83,24 @@
       <option name="presentableId" value="Default" />
       <updated>1745666064959</updated>
       <workItem from="1745666066045" duration="1929000" />
+      <workItem from="1745883901890" duration="1133000" />
     </task>
+    <task id="LOCAL-00001" summary="Changements pour que RestServer démarre correctement">
+      <option name="closed" value="true" />
+      <created>1745875527500</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745875527500</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changements pour que RestServer démarre correctement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changements pour que RestServer démarre correctement" />
   </component>
 </project>
