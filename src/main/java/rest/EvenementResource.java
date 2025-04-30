@@ -1,6 +1,9 @@
 package rest;
 
 import dao.EvenementDAO;
+import dao.OrganisateurDAO;
+import domain.Ticket;
+import dto.EvenementDTO;
 import jpa.EntityManagerHelper;
 import domain.Evenement;
 import jakarta.enterprise.context.RequestScoped;
@@ -11,6 +14,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("evenement")
 @RequestScoped
@@ -20,7 +24,7 @@ public class EvenementResource {
 
     private EntityManager entityManager = EntityManagerHelper.getEntityManager();
 
-    private EvenementDAO evenementDAO;
+    private EvenementDAO evenementDAO = new EvenementDAO(entityManager);
 
     public EvenementResource() {} // Required for CDI
 
@@ -31,8 +35,11 @@ public class EvenementResource {
     }
 
     @GET
-    public List<Evenement> getAllEvenements() {
-        return entityManager.createQuery("SELECT e FROM Evenement e", Evenement.class).getResultList();
+    public List<EvenementDTO> getAllEvenements() {
+        List<Evenement> events = evenementDAO.getAll(); // assume you have such a method
+        return events.stream()
+                .map(EvenementDTO::new)
+                .collect(Collectors.toList());
     }
 
     @POST
@@ -41,5 +48,16 @@ public class EvenementResource {
         entityManager.persist(evenement);
         entityManager.getTransaction().commit();
         return Response.ok().entity("Evenement added successfully").build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteEvenement(@PathParam("id") Long id) {
+        Evenement evenement = entityManager.find(Evenement.class, id);
+        if (evenement == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity("Event not found").build();
+        }
+        evenementDAO.delete(evenement);
+        return Response.ok().entity("Event deleted successfully").build();
     }
 }

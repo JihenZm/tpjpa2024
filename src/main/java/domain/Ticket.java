@@ -3,6 +3,8 @@ package domain;
 import jakarta.persistence.*;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Ticket {
 
@@ -19,6 +21,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "evenement_id")
+    @JsonBackReference
     private Evenement evenement;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package dao;
 
+import domain.Ticket;
 import jakarta.persistence.*;
 import java.util.List;
 import domain.Evenement;
@@ -34,4 +35,18 @@ public class EvenementDAO {
                 .setParameter("popularity", minPopularity)
                 .getResultList();
     }
+
+    public Evenement delete(Evenement evenement) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.remove(evenement);
+        transaction.commit();
+        return evenement;
+    }
+
+    public List<Evenement> getAll() {
+        return entityManager.createQuery("SELECT e FROM Evenement e", Evenement.class)
+                .getResultList();
+    }
+
 }

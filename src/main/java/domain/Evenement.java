@@ -3,6 +3,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Evenement {
 
@@ -19,6 +21,7 @@ public class Evenement {
     private int popularite;
     private int capacite;
     @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Ticket> tickets;
 
     @ManyToOne
