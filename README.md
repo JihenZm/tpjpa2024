@@ -18,6 +18,7 @@ The API is **fully implemented** and ready for testing and integration.
 
 ```bash
 git clone https://your-backend-repo-url.git
+git checkout amir/resources
 cd backend
 ```
 
@@ -71,8 +72,8 @@ The frontend is built using React and can be accessed from a separate repository
 ### 1. Clone the Frontend Repository
 
 ```bash
-git clone https://your-frontend-repo-url.git
-cd frontend
+git clone https://github.com/JihenZm/FrontendSIRProject.git
+cd Frontend/main
 ```
 
 ### 2. Install Dependencies
@@ -84,7 +85,7 @@ npm install
 ### 3. Run the Frontend
 
 ```bash
-npx serve
+npx ng serve --proxy-config proxy.conf.json
 ```
 
 > The frontend expects the backend to be running on `http://localhost:8080` (or adjust the API base URL in the frontend accordingly).
@@ -97,8 +98,4 @@ npx serve
 - `domain/`: JPA entities
 - `dao/`: Request models and data access helpers
 - `jpa/EntityManagerHelper.java`: Handles persistence context
-
----
-
-Feel free to update credentials or endpoints based on your environment.
 
