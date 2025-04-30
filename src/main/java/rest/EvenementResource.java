@@ -30,8 +30,14 @@ public class EvenementResource {
 
     @GET
     @Path("/{id}")
-    public Evenement getEvenementById(@PathParam("id") Long id) {
-        return entityManager.find(Evenement.class, id); // Fix: entityManager should be injected now
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEvenementById(@PathParam("id") Long id) {
+        Evenement evenement = entityManager.find(Evenement.class, id);
+        if (evenement == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        EvenementDTO dto = new EvenementDTO(evenement);
+        return Response.ok(dto).build();
     }
 
     @GET
