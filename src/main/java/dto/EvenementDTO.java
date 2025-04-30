@@ -21,6 +21,7 @@ public class EvenementDTO {
     public String lieu;
     public double prix;
     public int popularite;
+    public int capacite;
     public List<TicketDTO> tickets;
 
     public EvenementDTO(Evenement evenement) {
@@ -32,6 +33,7 @@ public class EvenementDTO {
         this.lieu = evenement.getLieu();
         this.prix = evenement.getPrix();
         this.popularite = evenement.getPopularite();
+        this.capacite = evenement.getCapacite();
         this.tickets = evenement.getTickets() == null ? new ArrayList<>() :
                 evenement.getTickets().stream()
                         .map(TicketDTO::new)
